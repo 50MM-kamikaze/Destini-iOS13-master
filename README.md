@@ -1,51 +1,58 @@
+# Intro 
+---
+- stories will be changed according to the choices you make 
+- includes 2 stories for basic understanding
+# Step 1 
+---
+- Open the project and go to the Main.storyboard to familiarise yourself with the IBOutlets that have already been created for you. The easiest way is to open the Assistant editor and hover over the circles next to the code to see what they link to.
+- Create a single **IBAction** that links both the “Choice 1” button and the “Choice 2” button to the ViewController.swift, call the IBAction choiceMade().
+# Step 2
+---
+- At the top of the ViewController.swift file, just below the IBOutlets, create your first story and choice options by creating the following 3 let **constants**.
+- **Name Value**
 
-![App Brewery Banner](Documentation/AppBreweryBanner.png)
+>story0 "You see a fork in the road."
 
-#  Destini
+>choice1 "Take a left."
 
-## Our Goal
+>choice2 "Take a right." 
 
-The goal of this challenge is to get you comfortable with implementing the MVC design pattern and thinking about the state of your app. In addition, you will be reviewing the concept of Swift Structures and using it to separate the Model from the Controller. 
+- Again inside viewDidLoad(), make the storyLabel display **story0**.
+- Search StackOverflow and/or Apple documentation to figure out how to “change the title of a button using Swift”. Then set the red button to display choice1 and the purple button to display choice2.
+	- change the text on the button using button.setTitle()
 
-## What you will create
+# Step 3 
+---
 
-In this app, you will be creating a “choose your own adventure” game similar to the App Store hit “Life Line” app. The app will tell a story depending on what the user chooses and can be fleshed out and modified to provide an engaging story-telling experience
+- At this point, it’s very difficult to continue writing more stories without creating some sort of a structure that associates the choices with the story.
 
+- We have already created a folder called Model and inside there is a file called **Story.swift**, modify this file to create a **Struct** called _Story_ that describes the structure of a story, including properties for the story title, choice1 and choice2.
+    
+- If successful, you should be able to replace the three constants (story0, choice1 and choice2) in ViewController.swift with a single line that creates a new story from the Story struct
+- Instead of creating separate variables to store more stories, create an **Array** called stories that contains a total of 3 stories. These will correspond to the next stages in the story.
+# Step 4 
+---
+Now, we need to link up our stories. When the user turns left, they see a tiger (story1) and when they turn right, they find a chest (story2).
 
-## Story Strings
-```
-        Story(
-            title: "Your car has blown a tire on a winding road in the middle of nowhere with no cell phone reception. You decide to hitchhike. A rusty pickup truck rumbles to a stop next to you. A man with a wide brimmed hat with soulless eyes opens the passenger door for you and asks: 'Need a ride, boy?'.",
-            choice1: "I'll hop in. Thanks for the help!", choice1Destination: 2,
-            choice2: "Better ask him if he's a murderer first.", choice2Destination: 1
-        ),
-        Story(
-            title: "He nods slowly, unfazed by the question.",
-            choice1: "At least he's honest. I'll climb in.", choice1Destination: 2,
-            choice2: "Wait, I know how to change a tire.", choice2Destination: 3
-        ),
-        Story(
-            title: "As you begin to drive, the stranger starts talking about his relationship with his mother. He gets angrier and angrier by the minute. He asks you to open the glovebox. Inside you find a bloody knife, two severed fingers, and a cassette tape of Elton John. He reaches for the glove box.",
-            choice1: "I love Elton John! Hand him the cassette tape.", choice1Destination: 5,
-            choice2: "It's him or me! You take the knife and stab him.", choice2Destination: 4
-        ),
-        Story(
-            title: "What? Such a cop out! Did you know traffic accidents are the second leading cause of accidental death for most adult age groups?",
-            choice1: "The", choice1Destination: 0,
-            choice2: "End", choice2Destination: 0
-        ),
-        Story(
-            title: "As you smash through the guardrail and careen towards the jagged rocks below you reflect on the dubious wisdom of stabbing someone while they are driving a car you are in.",
-            choice1: "The", choice1Destination: 0,
-            choice2: "End", choice2Destination: 0
-        ),
-        Story(
-            title: "You bond with the murderer while crooning verses of 'Can you feel the love tonight'. He drops you off at the next town. Before you go he asks you if you know any good places to dump bodies. You reply: 'Try the pier.'",
-            choice1: "The", choice1Destination: 0,
-            choice2: "End", choice2Destination: 0
-        )      
-```
-
->This is a companion project to The App Brewery's Complete App Development Bootcamp, check out the full course at [www.appbrewery.co](https://www.appbrewery.co/)
-
-![End Banner](Documentation/readme-end-banner.png)
+- Link both buttons to an IBAction called choiceMade().
+    
+      
+    
+- Modify the code inside your ViewController.swift so that when you run the app and the user clicks on the button that says “Take a left”, the storyLabel updates to show “You see a tiger” and the choice buttons show the new choices. But if the user clicked on the button that says “Take a right”, the storyLabel updates to show “You find a treasure chest” as well as the new choices for that story.
+# Step 5
+---
+- Create a **Structure** in the StoryBrain.swift file called StoryBrain.
+    
+- Move the storyNumber and stories Array into the StoryBrain.
+    
+- Create a method (a function associated with an object) in the StoryBrain that’s called nextStory(), it should take a single **input** called userChoice which is of type **String**.
+    
+- **Move** the story progression functionality that currently lives in the choiceMade() IBAction into the nextStory() method.
+    
+- Create a new instance of StoryBrain in the ViewController.swift to be able to tap into the newfound capabilities of the StoryBrain, call it storyBrain.
+    
+- Use the storyBrain to determine which story to show when the user makes a choice.
+    
+- Use the storyBrain to provide the story title and choice text.
+    
+- Make sure there are no more errors, but the functionality should be the same as the version you had at the end of Step 4.
